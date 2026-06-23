@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'VT323', monospace;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* Recreating the pastel gradient and white grid */
+    background:
+        linear-gradient(white 1px, transparent 1px),
+        linear-gradient(90deg, rgb(236, 229, 229) 1px, transparent 1px),
+        linear-gradient(180deg, #f7bad9 0%, #bac9fb 100%);
+        background-size: 30px 30px, 30px 30px, 100% 100%; 
+    background-attachment: fixed;
+}
+
+/* Decorative Background Star */
+.star {
+    position: absolute;
+    color: #ffeb85;
+    font-size: 2rem;
+    text-shadow: 2px 2px 0 #2a2a4a;
+    user-select: none;
+}
+
+.star1 {
+    top: 15%;
+    left: 20%;
+}
+
+.star2 {
+    bottom: 20%;
+    right: 25%;
+    font-size: 3rem;
+}
+
+.star3 {
+    top: 40%;
+    right: 15%;
+}
+
+/* Retro Window Container */
+.window {
+    width: 400px;
+    max-width: 90%;
+    background: #70b791;
+    border: 2px solid #2a2a4a;
+    border-radius: 8px;
+    box-shadow: 4px 4px 0 rgba(42, 42, 74, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 10;
+}
+
+/* Window Title Bar */
+.title-bar {
+    background: #9e9bea;
+    border-bottom: 2px solid #2a2a4a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 8px;
+    color: #ffffff;
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 0 #2a2a4a;
+    letter-spacing: 1px;
+}
+
+.controls {
+    display: flex;
+    gap: 4px;
+}
+
+.control-btn {
+    width: 20px;
+    height: 20px;
+    background: #ffffff;
+    border: 2px solid #2a2a4a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #2a2a4a;
+    cursor: pointer;
+    text-shadow: none;
+}
+
+/* Chat Content Area */
+.chat-content {
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background: #d5e8dd;
+}
+
+.messages-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 10px;
+}
+
+/* Scrollbar styling for retro feel */
+.messages-container::-webkit-scrollbar {
+    width: 12px;
+}
+
+.messages-container::-webkit-scrollbar-track {
+    background: #e0e6ff;
+    border-left: 2px solid #2a2a4a;
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+    background: #9ba9ea;
+    border: 2px solid #2a2a4a;
+}
+
+.message {
+    max-width: 80%;
+    padding: 12px 12px;
+    border: 2px solid #2a2a4a;
+    font-size: 1.1rem;
+    word-wrap: break-word;
+}
+
+.message.bot {
+    align-self: flex-start;
+    background: #e0e6ff;
+    border-radius: 8px 8px 8px 0;
+}
+
+.message.user {
+    align-self: flex-end;
+    background: #ffcce6;
+    border-radius: 8px 8px 0 8px;
+}
+
+/* Input Area */
+.input-area {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 2px dashed #9ba9ea;
+}
+
+input[type="text"] {
+    flex-grow: 1;
+    padding: 8px;
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    border: 2px solid #2a2a4a;
+    background: #ffffff;
+    outline: none;
+}
+
+input[type="text"]:focus {
+    background: #f0f4ff;
+}
+
+button {
+    padding: 8px 16px;
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    background: #ffb3d9;
+    border: 2px solid #2a2a4a;
+    color: #2a2a4a;
+    cursor: pointer;
+    box-shadow: 2px 2px 0 #2a2a4a;
+}
+
+button:active {
+    box-shadow: 0 0 0 #2a2a4a;
+    transform: translate(2px, 2px);
+}
