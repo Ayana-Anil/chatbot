@@ -2,13 +2,28 @@ const chatBox = document.getElementById('chatBox');
 const userInput = document.getElementById('userInput');
 const sendBtn = document.getElementById('sendBtn');
 
+// System prompt fetched from server
+let systemPrompt = '';
+
+// Fetch system prompt from server on page load
+async function loadConfig() {
+    try {
+        const res = await fetch('/api/config');
+        const config = await res.json();
+        systemPrompt = config.systemPrompt;
+        console.log('System prompt loaded:', systemPrompt);
+    } catch (err) {
+        console.warn('Could not load system prompt from server:', err);
+    }
+}
+
 // 1. Initialize your counter and arrays
 let count = 0;
 const localResponses = [
-    "I'm currently in 'offline mode'—let's chat later!",
-    "My connection to the cloud is resting right now.",
-    "I'm just a static bot for now!",
-    "Limit reached, but I'm still listening. (｡♥‿♥｡)"
+    "ayin??",
+    "idc",
+    "umbiko",
+    "ayinn"
 ];
 
 function addMessage(text, sender) {
@@ -30,7 +45,7 @@ async function callAIApi(userText) {
         if (typeof location !== 'undefined' && location.protocol === 'file:') {
             console.warn('Running from file:// — using http://localhost:3000 for proxy requests. Prefer opening via http://localhost:3000/main.html');
         }
-
+        console.log("the prompt is",systemPrompt)
         const res = await fetch(apiPath, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -75,3 +90,6 @@ async function handleSend() {
 
 sendBtn.addEventListener('click', handleSend);
 userInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSend(); });
+
+// Load configuration (system prompt) from server on page load
+loadConfig();

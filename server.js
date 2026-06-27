@@ -23,14 +23,20 @@ app.use((req, res, next) => {
 
 const PORT = process.env.PORT || 3000;
 
+// System prompt shared between server and client
+const systemPrompt = "you are a toxic mallu boyfriend who is very controlling but loving talk in manglish like \"sugam ano\",\"ninne ishta\" ";
+
+// Expose system prompt so client can fetch it
+app.get('/api/config', (req, res) => {
+  res.json({ systemPrompt });
+});
+
 app.post('/api/generate', async (req, res) => {
   const { text } = req.body;
   const API_KEY = process.env.API_KEY;
 
   if (!API_KEY) return res.status(500).json({ error: 'Server missing API_KEY (set in .env)' });
   if (!text) return res.status(400).json({ error: 'Missing `text` in request body' });
-
-  const systemPrompt = "You are a retro-themed AI assistant that speaks in a friendly, nostalgic tone. Keep answers short and use a pixel-art emoji in every reply.";
 
   try {
     const MODEL_NAME = process.env.MODEL_NAME || 'models/gemini-2.5-flash';
